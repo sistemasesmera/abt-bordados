@@ -1,0 +1,205 @@
+---
+---
+<section id="contacto">
+  <div class="left reveal">
+    <p class="tag">Hablemos</p>
+    <h2>Pide tu presupuesto<br><em>gratis</em></h2>
+    <p class="sub">Sin compromiso. Te respondemos en menos de 2 horas en horario de tienda.</p>
+
+    <ul class="info">
+      <li>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 11a4 4 0 100-8 4 4 0 000 8zM2 18c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div><strong>Dirección</strong><p>Paseo Santa María de la Cabeza 10, Madrid</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 4h2.5l1 4-1.5 1.5A11 11 0 0010 13l1.5-1.5 4 1V15a2 2 0 01-2 2C6.477 17 3 13.523 3 9.5A2 2 0 013 4z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><strong>Teléfono / WhatsApp</strong><p><a href="tel:+34600000000">+34 600 000 000</a></p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="4" width="16" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div><strong>Email</strong><p><a href="mailto:info@abtbordados.com">info@abtbordados.com</a></p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div><strong>Horario</strong><p>Lun–Vie: 9:00–19:00 · Sáb: 10:00–14:00</p></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="right reveal">
+    <form id="contactForm">
+      <div class="row">
+        <div class="field">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="field">
+          <label for="tel">Teléfono *</label>
+          <input type="tel" id="tel" placeholder="600 000 000" required />
+        </div>
+      </div>
+      <div class="field">
+        <label for="servicio">¿Qué necesitas?</label>
+        <select id="servicio">
+          <option value="">Selecciona un servicio...</option>
+          <option>Bordado personalizado</option>
+          <option>Arreglo de ropa</option>
+          <option>Bordados para empresa</option>
+          <option>Regalo personalizado</option>
+          <option>Ropa de bebé / niños</option>
+          <option>Ropa deportiva</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="msg">Cuéntanos más</label>
+        <textarea id="msg" placeholder="Describe tu pedido: cantidad, prenda, texto o diseño, urgencia..."></textarea>
+      </div>
+      <button type="submit">Enviar consulta</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    min-height: 560px;
+    background: var(--bg);
+  }
+
+  /* Yellow left panel */
+  .left {
+    flex: 1 1 300px;
+    background: var(--yellow);
+    padding: 5rem 4rem 5rem 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tag {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.55);
+    margin-bottom: .8rem;
+  }
+
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -.02em;
+    margin-bottom: 1rem;
+  }
+  h2 em {
+    font-style: normal;
+    background: var(--ink);
+    color: var(--yellow);
+    padding: .02em .15em .06em;
+    border-radius: 3px;
+  }
+
+  .sub {
+    font-size: .9rem;
+    color: rgba(0,0,0,.6);
+    line-height: 1.75;
+    max-width: 320px;
+    margin-bottom: 2.5rem;
+  }
+
+  .info { list-style: none; display: flex; flex-direction: column; gap: 1.3rem; }
+  .info li { display: flex; gap: .9rem; align-items: flex-start; }
+  .info li > svg {
+    width: 18px; height: 18px;
+    color: var(--ink);
+    flex-shrink: 0;
+    margin-top: .15rem;
+    opacity: .7;
+  }
+  .info strong { display: block; font-size: .82rem; font-weight: 700; color: var(--ink); margin-bottom: .1rem; }
+  .info p { font-size: .82rem; color: rgba(0,0,0,.6); }
+  .info a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  .info a:hover { text-decoration: underline; }
+
+  /* Form panel */
+  .right {
+    flex: 1 1 380px;
+    padding: 4rem 5% 4rem 4rem;
+    background: var(--bg);
+  }
+
+  form { display: flex; flex-direction: column; gap: 1rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .field { display: flex; flex-direction: column; gap: .35rem; }
+
+  label {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: .02em;
+    text-transform: uppercase;
+  }
+
+  input, select, textarea {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: .9rem;
+    padding: .75rem 1rem;
+    outline: none;
+    transition: border-color .18s, background .18s;
+    resize: vertical;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--ink);
+    background: #fff;
+  }
+  textarea { min-height: 110px; }
+
+  button {
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .9rem;
+    padding: .9rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: .02em;
+    transition: background .18s, transform .15s;
+    margin-top: .3rem;
+  }
+  button:hover { background: #333; transform: translateY(-1px); }
+
+  @media (max-width: 780px) {
+    section { flex-direction: column; }
+    .left { padding: 3.5rem 1.4rem 3rem; }
+    .right { padding: 3rem 1.4rem 4rem; }
+    .row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button') as HTMLButtonElement;
+    btn.textContent = '✓ Enviado — te contactamos pronto';
+    btn.style.background = '#22c55e';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Enviar consulta';
+      btn.style.background = '';
+      btn.disabled = false;
+      (this as HTMLFormElement).reset();
+    }, 4000);
+  });
+</script>

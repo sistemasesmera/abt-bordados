@@ -1,0 +1,75 @@
+---
+const pasos = [
+  { n: '1', title: 'Nos contactas',         desc: 'Por WhatsApp, formulario o en tienda. Cuéntanos qué necesitas y te respondemos en minutos.' },
+  { n: '2', title: 'Presupuesto gratis',    desc: 'Te enviamos el precio exacto sin compromiso. Sin letra pequeña ni cargos ocultos.' },
+  { n: '3', title: 'Nos pones a trabajar',  desc: 'Aprobado el presupuesto, comenzamos inmediatamente. Recibirás actualizaciones del proceso.' },
+  { n: '4', title: 'Recoge o recíbelo',     desc: 'Pasa a recogerlo a la tienda o te lo enviamos a casa. Listo para lucirlo o regalarlo.' },
+];
+---
+
+<section id="proceso">
+  <div class="section-header center reveal">
+    <div class="section-tag">Cómo trabajamos</div>
+    <h2 class="section-title">Simple, rápido y sin sorpresas</h2>
+  </div>
+
+  <div class="steps">
+    {pasos.map((p, i) => (
+      <div class="step reveal">
+        <div class="num">{p.n}</div>
+        {i < pasos.length - 1 && <div class="arrow" aria-hidden="true">→</div>}
+        <h3>{p.title}</h3>
+        <p>{p.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  section { padding: 90px 5%; background: var(--black-soft); }
+
+  .steps {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .step {
+    flex: 1 1 200px;
+    text-align: center;
+    padding: 1.5rem 1.2rem;
+    position: relative;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 1.9rem;
+    right: -14px;
+    color: var(--yellow);
+    font-size: 1.4rem;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  .num {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(255,208,0,.1);
+    border: 2px solid rgba(255,208,0,.38);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.1rem;
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--yellow);
+  }
+
+  h3 { font-family: var(--font-head); font-weight: 700; font-size: .98rem; margin-bottom: .45rem; }
+  p { color: var(--muted); font-size: .84rem; line-height: 1.65; }
+
+  @media (max-width: 720px) {
+    section { padding: 60px 1.2rem; }
+    .arrow { display: none; }
+  }
+</style>

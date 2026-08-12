@@ -1,0 +1,62 @@
+---
+const testimonios = [
+  { emoji: '👩‍💼', text: 'Mandé a bordar el nombre de mi empresa en 20 camisetas y el resultado fue espectacular. Rápidos, atentos y con un precio muy justo. Repetiré seguro.', name: 'María García', role: 'Propietaria de restaurante' },
+  { emoji: '👰', text: 'Me arreglaron un vestido de novia de urgencia dos días antes de la boda. Profesionalidad total, quedó perfecto. No puedo estar más agradecida.', name: 'Laura Martínez', role: 'Clienta particular' },
+  { emoji: '⚽', text: 'Llevamos dos años trabajando con ellos para los uniformes de nuestro equipo. Calidad constante, buena comunicación y los plazos siempre se cumplen.', name: 'Carlos Ruiz', role: 'Coordinador deportivo' },
+];
+---
+
+<section id="testimonios">
+  <div class="section-header center reveal">
+    <div class="section-tag">Lo que dicen nuestros clientes</div>
+    <h2 class="section-title">Opiniones Reales</h2>
+  </div>
+
+  <div class="grid">
+    {testimonios.map(t => (
+      <div class="card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="text">"{t.text}"</p>
+        <div class="author">
+          <div class="avatar">{t.emoji}</div>
+          <div>
+            <strong>{t.name}</strong>
+            <span>{t.role}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  section { padding: 90px 5%; background: var(--black); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.4rem; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.7rem;
+    transition: border-color .3s;
+  }
+  .card:hover { border-color: rgba(255,208,0,.24); }
+
+  .stars { color: var(--yellow); font-size: .95rem; letter-spacing: 2px; margin-bottom: .9rem; }
+
+  .text { color: #ccc; font-size: .88rem; line-height: 1.72; margin-bottom: 1.4rem; font-style: italic; }
+
+  .author { display: flex; gap: .8rem; align-items: center; }
+  .avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,208,0,.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  strong { display: block; font-weight: 600; font-size: .88rem; }
+  span { font-size: .76rem; color: #666; }
+
+  @media (max-width: 720px) { section { padding: 60px 1.2rem; } }
+</style>

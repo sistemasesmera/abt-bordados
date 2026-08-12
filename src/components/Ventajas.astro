@@ -1,0 +1,103 @@
+---
+const items = [
+  { stat: '48h',  title: 'Entrega express',       desc: 'Servicio urgente sin coste extra para encargos con prisa.' },
+  { stat: '200+', title: 'Clientes satisfechos',   desc: 'Empresas y particulares en Madrid que repiten.' },
+  { stat: '1 ud', title: 'Sin pedido mínimo',      desc: 'Desde una sola prenda, sin excepciones.' },
+  { stat: '0 €',  title: 'Presupuesto gratis',     desc: 'Sin compromiso. Respuesta en menos de 2 horas.' },
+];
+---
+
+<section id="ventajas">
+  <!-- cross-stitch texture -->
+  <div class="texture" aria-hidden="true"></div>
+
+  <div class="inner">
+    <div class="section-header center reveal">
+      <div class="section-tag">Por qué elegirnos</div>
+      <h2 class="section-title">Calidad que se nota</h2>
+    </div>
+
+    <div class="grid">
+      {items.map(i => (
+        <div class="item reveal">
+          <div class="stat">{i.stat}</div>
+          <h3>{i.title}</h3>
+          <p>{i.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    padding: 90px 5%;
+    background: var(--bg-alt);
+    overflow: hidden;
+  }
+
+  /* Cross-stitch SVG pattern — the signature element */
+  .texture {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cline x1='5' y1='5' x2='12' y2='12' stroke='%23111111' stroke-width='1.4' stroke-linecap='round'/%3E%3Cline x1='12' y1='5' x2='5' y2='12' stroke='%23111111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 28px 28px;
+    opacity: .045;
+    pointer-events: none;
+  }
+
+  .inner { position: relative; z-index: 1; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .item {
+    padding: 2.2rem 1.8rem;
+    border-right: 1px solid var(--border);
+    transition: background .2s;
+  }
+  .item:last-child { border-right: none; }
+  .item:hover { background: var(--yellow-pale); }
+
+  .stat {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 3.5vw, 3rem);
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: .5rem;
+    letter-spacing: -.03em;
+  }
+
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .88rem;
+    color: var(--ink);
+    margin-bottom: .4rem;
+    letter-spacing: -.01em;
+  }
+
+  p { color: var(--muted); font-size: .82rem; line-height: 1.65; }
+
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .item { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .item:nth-child(2n) { border-right: none; }
+    .item:nth-last-child(-n+2) { border-bottom: none; }
+  }
+
+  @media (max-width: 480px) {
+    section { padding: 70px 1.4rem; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .item { padding: 1.6rem 1.2rem; }
+  }
+</style>

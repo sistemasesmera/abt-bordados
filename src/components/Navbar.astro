@@ -1,0 +1,119 @@
+---
+---
+<nav id="navbar">
+  <div class="center-group">
+    <a href="#hero" class="logo">
+      <img src="/logo-abt.png" alt="ABT Bordados" height="38" />
+    </a>
+
+    <ul class="links" id="navLinks">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="cta">Presupuesto gratis</a></li>
+    </ul>
+  </div>
+
+  <button class="burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    inset-block-start: 0; inset-inline: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    height: 110px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .center-group {
+    display: flex;
+    align-items: center;
+    gap: 2.8rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .logo img {
+    height: 100px;
+    width: auto;
+    display: block;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 500;
+    transition: color .18s;
+  }
+  .links a:hover { color: var(--ink); }
+
+  .cta {
+    background: var(--ink) !important;
+    color: #fff !important;
+    padding: .42rem 1.1rem;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    font-family: var(--font-head);
+    font-size: .8rem !important;
+    letter-spacing: .02em;
+    transition: background .18s !important;
+  }
+  .cta:hover { background: var(--yellow) !important; color: var(--ink) !important; }
+
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    position: absolute;
+    right: 1.2rem;
+  }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+  @media (max-width: 680px) {
+    .burger { display: flex; }
+    .center-group { gap: 0; }
+    .links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 62px; left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem 1.5rem;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+    .links.open { display: flex; }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('burger')!;
+  const links  = document.getElementById('navLinks')!;
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>

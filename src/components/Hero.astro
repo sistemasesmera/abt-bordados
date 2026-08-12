@@ -1,0 +1,201 @@
+---
+---
+<section id="hero">
+  <div class="content">
+    <p class="eyebrow">Bordados · Arreglos · Madrid</p>
+    <h1>
+      Tu marca,<br>
+      bordada<br>
+      <em>a la perfección.</em>
+    </h1>
+    <p class="sub">Bordados personalizados, arreglos de ropa y sublimación textil para empresas y particulares. Entrega rápida y presupuesto siempre gratis.</p>
+
+    <div class="trust">
+      <span>⚡ 48h entrega</span>
+      <span>✓ Desde 1 prenda</span>
+      <span>0€ presupuesto</span>
+    </div>
+
+    <div class="actions">
+      <a href="#contacto" class="btn-primary">Pedir presupuesto gratis</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+
+  <div class="visual">
+    <img
+      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&h=1100&q=85"
+      alt="Bordado artesanal profesional"
+      loading="eager"
+    />
+    <div class="badge">
+      <span class="badge-num">+200</span>
+      <span class="badge-txt">clientes<br>satisfechos</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── Left dark panel ── */
+  .content {
+    background: var(--ink);
+    padding: calc(110px + 3rem) 7% 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+    margin-bottom: 1.4rem;
+  }
+
+  h1 {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.06;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -.025em;
+  }
+
+  h1 em {
+    font-style: normal;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: .04em .14em .08em;
+    border-radius: 3px;
+  }
+
+  .sub {
+    font-size: .95rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.82;
+    margin-bottom: 2rem;
+    max-width: 420px;
+  }
+
+  .trust {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.4rem;
+  }
+  .trust span {
+    border: 1px solid rgba(255,255,255,.18);
+    color: rgba(255,255,255,.75);
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .3rem .85rem;
+    border-radius: 100px;
+    letter-spacing: .03em;
+  }
+
+  .actions { display: flex; gap: .9rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .88rem;
+    padding: .85rem 1.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background .18s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: rgba(255,255,255,.85);
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .88rem;
+    padding: .85rem 1.8rem;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,.3);
+    text-decoration: none;
+    transition: background .18s, color .18s, border-color .18s;
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.6);
+    color: #fff;
+  }
+
+  /* ── Right photo panel ── */
+  .visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Floating badge */
+  .badge {
+    position: absolute;
+    bottom: 2.5rem;
+    left: -1.5rem;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 1rem 1.4rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  }
+  .badge-num {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: 1.8rem;
+    line-height: 1;
+    letter-spacing: -.03em;
+  }
+  .badge-txt {
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 860px) {
+    section {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 55vw;
+    }
+    .content {
+      padding: calc(110px + 2rem) 1.4rem 3rem;
+      text-align: center;
+    }
+    .sub { margin-inline: auto; }
+    .trust { justify-content: center; }
+    .actions { justify-content: center; }
+    .visual { min-height: unset; }
+    .badge { bottom: 1.2rem; left: 50%; transform: translateX(-50%); }
+  }
+</style>

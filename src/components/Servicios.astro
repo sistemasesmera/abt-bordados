@@ -1,0 +1,257 @@
+---
+const categorias = [
+  {
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+    tag: 'Categoría 1',
+    title: 'Bordados y Personalización Textil',
+    servicios: [
+      {
+        name: 'Bordado Corporativo y Ropa Laboral',
+        desc: 'Batas médicas, casacas sanitarias, delantales de hostelería, ropa de estética y camisetas.',
+      },
+      {
+        name: 'Regalos y Detalles Personalizados',
+        desc: 'Nombres, iniciales, frases o fechas especiales en prendas de vestuario y complementos.',
+      },
+      {
+        name: 'Bordado en Accesorios',
+        desc: 'Gorras, mochilas, bolsas de tela, sudaderas, camisetas y ropa deportiva.',
+      },
+      {
+        name: 'Parches Bordados',
+        desc: 'Parches independientes con opción de terminado termoadhesivo.',
+      },
+      {
+        name: 'Lencería y Hogar',
+        desc: 'Escudos, iniciales o marcas en sábanas, manteles, servilletas y lencería del hogar.',
+      },
+    ],
+    nota: 'La tarifa se calcula según la densidad y número de puntadas. La programación o picaje del diseño se cobra aparte.',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?auto=format&fit=crop&w=800&q=80',
+    tag: 'Categoría 2',
+    title: 'Arreglos y Adaptación de Prenda',
+    servicios: [
+      {
+        name: 'Bajos y Dobladillos',
+        desc: 'Ajuste de largo en pantalones (vaqueros con bajo original, vestir, deportivos), faldas, vestidos y abrigos.',
+      },
+      {
+        name: 'Ajuste de Talla',
+        desc: 'Estrechamos o ampliamos cintura, caderas, hombros y mangas en chaquetas, camisas, vestidos y pantalones.',
+      },
+      {
+        name: 'Cambio de Cremalleras',
+        desc: 'Cremalleras rotas en pantalones, faldas, cazadoras, abrigos de plumas, chaquetas de piel y bolsos.',
+      },
+      {
+        name: 'Reparaciones y Refuerzos',
+        desc: 'Descosidos, zonas desgastadas, parches invisibles o decorativos, botones y corchetes.',
+      },
+      {
+        name: 'Rediseño de Prendas',
+        desc: 'Cambio de cuellos, modificación de mangas, acortado de abrigos y ajuste de siluetas.',
+      },
+    ],
+    nota: null,
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=80',
+    tag: 'Categoría 3',
+    title: 'Confección, Hogar y Sublimación',
+    servicios: [
+      {
+        name: 'Cortinas, Visillos y Caídas',
+        desc: 'Confección a medida, ajuste de altos y adaptación de cabezales en todo tipo de tejidos.',
+      },
+      {
+        name: 'Fundas y Ropa de Hogar',
+        desc: 'Fundas de cojín, sofá y sillas con cremallera. Manteles, sábanas, colchas y nórdicos a medida.',
+      },
+      {
+        name: 'Tazas y Accesorios Personalizados',
+        desc: 'Impresión a todo color en tazas cerámicas, vasos térmicos, termos, llaveros, puzles y alfombrillas.',
+      },
+      {
+        name: 'Chapas Personalizadas',
+        desc: 'Con alfiler, abrebotellas o imán. Perfectas para eventos, bodas, despedidas y promociones de marca.',
+      },
+      {
+        name: 'Sublimación Textil',
+        desc: 'Estampación a todo color en prendas de poliéster o mezcla: camisetas deportivas, equipaciones y sudaderas.',
+      },
+    ],
+    nota: null,
+  },
+];
+---
+
+<section id="servicios">
+  <div class="section-header center reveal">
+    <div class="section-tag">Qué hacemos</div>
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-sub">Bordado artesanal, arreglos de ropa y personalización para empresas y particulares.</p>
+  </div>
+
+  <div class="grid">
+    {categorias.map(cat => (
+      <article class="card reveal">
+        <div class="thumb">
+          <img src={cat.img} alt={cat.title} loading="lazy" />
+          <div class="cat-tag">{cat.tag}</div>
+        </div>
+        <div class="body">
+          <h3>{cat.title}</h3>
+          <ul class="lista">
+            {cat.servicios.map(s => (
+              <li>
+                <span class="dot"></span>
+                <div>
+                  <strong>{s.name}</strong>
+                  <p>{s.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          {cat.nota && <p class="nota">⚠ {cat.nota}</p>}
+          <a href="#contacto" class="cta-link">Pedir presupuesto →</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  section { padding: 90px 5%; background: var(--bg); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    align-items: start;
+  }
+
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+
+  .thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+  }
+  .card:hover .thumb img { transform: scale(1.05); }
+
+  .cat-tag {
+    position: absolute;
+    top: .8rem;
+    left: .8rem;
+    background: var(--yellow);
+    color: var(--ink);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .25rem .65rem;
+    border-radius: 3px;
+  }
+
+  .body {
+    padding: 1.6rem 1.6rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    flex: 1;
+  }
+
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--ink);
+    letter-spacing: -.01em;
+    line-height: 1.3;
+  }
+
+  .lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+  }
+
+  .lista li {
+    display: flex;
+    gap: .7rem;
+    align-items: flex-start;
+  }
+
+  .dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--yellow);
+    border-radius: 50%;
+    margin-top: .35rem;
+  }
+
+  .lista strong {
+    display: block;
+    font-size: .83rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: .18rem;
+  }
+
+  .lista p {
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .nota {
+    font-size: .75rem;
+    color: var(--muted);
+    background: var(--bg-alt);
+    border-left: 3px solid var(--yellow);
+    padding: .7rem .9rem;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.6;
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 1px;
+    align-self: flex-start;
+    transition: border-color .18s;
+  }
+  .cta-link:hover { border-color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  }
+  @media (max-width: 560px) {
+    section { padding: 70px 1.4rem; }
+  }
+</style>
