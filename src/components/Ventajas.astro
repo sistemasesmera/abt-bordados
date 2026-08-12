@@ -1,14 +1,13 @@
 ---
 const items = [
-  { stat: '48h',  title: 'Entrega express',       desc: 'Servicio urgente sin coste extra para encargos con prisa.' },
-  { stat: '200+', title: 'Clientes satisfechos',   desc: 'Empresas y particulares en Madrid que repiten.' },
-  { stat: '1 ud', title: 'Sin pedido mínimo',      desc: 'Desde una sola prenda, sin excepciones.' },
-  { stat: '0 €',  title: 'Presupuesto gratis',     desc: 'Sin compromiso. Respuesta en menos de 2 horas.' },
+  { stat: '48',  suffix: 'h',   title: 'Entrega express',     desc: 'Servicio urgente sin coste extra para encargos con prisa.' },
+  { stat: '200', suffix: '+',   title: 'Clientes satisfechos', desc: 'Empresas y particulares en Madrid que repiten.' },
+  { stat: '1',   suffix: ' ud', title: 'Sin pedido mínimo',    desc: 'Desde una sola prenda, sin excepciones.' },
+  { stat: '0',   suffix: ' €',  title: 'Presupuesto gratis',   desc: 'Sin compromiso. Respuesta en menos de 2 horas.' },
 ];
 ---
 
 <section id="ventajas">
-  <!-- cross-stitch texture -->
   <div class="texture" aria-hidden="true"></div>
 
   <div class="inner">
@@ -18,9 +17,11 @@ const items = [
     </div>
 
     <div class="grid">
-      {items.map(i => (
-        <div class="item reveal">
-          <div class="stat">{i.stat}</div>
+      {items.map((i, idx) => (
+        <div class="item" data-delay={idx * 120}>
+          <div class="stat">
+            <span class="num" data-target={i.stat}>0</span><span class="suffix">{i.suffix}</span>
+          </div>
           <h3>{i.title}</h3>
           <p>{i.desc}</p>
         </div>
@@ -37,7 +38,6 @@ const items = [
     overflow: hidden;
   }
 
-  /* Cross-stitch SVG pattern — the signature element */
   .texture {
     position: absolute;
     inset: 0;
@@ -59,22 +59,57 @@ const items = [
     background: var(--bg);
   }
 
+  /* Entrada escalonada */
   .item {
     padding: 2.2rem 1.8rem;
     border-right: 1px solid var(--border);
-    transition: background .2s;
+    transition: background .25s;
+    opacity: 0;
+    transform: translateY(24px);
   }
   .item:last-child { border-right: none; }
+  .item.visible { animation: slideUp .55s ease forwards; }
   .item:hover { background: var(--yellow-pale); }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   .stat {
     font-family: var(--font-head);
-    font-weight: 800;
+    font-weight: 900;
     font-size: clamp(2.2rem, 3.5vw, 3rem);
     color: var(--ink);
     line-height: 1;
     margin-bottom: .5rem;
     letter-spacing: -.03em;
+    display: flex;
+    align-items: baseline;
+    gap: .05em;
+  }
+
+  /* Barra amarilla animada bajo el número */
+  .num {
+    position: relative;
+    display: inline-block;
+  }
+  .num::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--yellow);
+    border-radius: 2px;
+    transition: width .6s ease .3s;
+  }
+  .item.visible .num::after { width: 100%; }
+
+  .suffix {
+    font-size: .75em;
+    font-weight: 700;
+    color: var(--yellow-dark);
   }
 
   h3 {
@@ -83,6 +118,7 @@ const items = [
     font-size: .88rem;
     color: var(--ink);
     margin-bottom: .4rem;
+    margin-top: .6rem;
     letter-spacing: -.01em;
   }
 
@@ -97,7 +133,42 @@ const items = [
 
   @media (max-width: 480px) {
     section { padding: 70px 1.4rem; }
-    .grid { grid-template-columns: 1fr 1fr; }
     .item { padding: 1.6rem 1.2rem; }
   }
 </style>
+
+<script>
+  function countUp(el: HTMLElement, target: number, duration: number) {
+    const start = performance.now();
+    const update = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      // ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toString();
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target.toString();
+    };
+    requestAnimationFrame(update);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const item = entry.target as HTMLElement;
+      const delay = parseInt(item.dataset.delay || '0');
+
+      setTimeout(() => {
+        item.classList.add('visible');
+
+        const numEl = item.querySelector('.num') as HTMLElement;
+        const target = parseInt(numEl.dataset.target || '0');
+        if (target > 0) countUp(numEl, target, 1200);
+      }, delay);
+
+      observer.unobserve(item);
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.item[data-delay]').forEach(el => observer.observe(el));
+</script>
